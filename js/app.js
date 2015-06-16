@@ -1,5 +1,12 @@
+// Variables
+var enemyStartPositionX = 0;
+var enemyStartPositionY = 63;
+
+var playerDistanceY = 83;
+var playerDistanceX = 100;
+
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x, y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -7,8 +14,8 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 
-    this.x = 0;
-    this.y = 0;
+    this.x = x; //-95
+    this.y = y; // 60
     //this.speed = Math.floor(Math.random()*3000) + 100;
 }
 
@@ -61,17 +68,15 @@ Player.prototype.render = function() {
 }
 
 Player.prototype.handleInput = function(key){
-    var gapY = 83;
-    var gapX = 100;
-
-    if(key == 'up' && (this.y-gapY >= 0)){
-        this.y = this.y - gapY;
-    }else if(key == 'down' && (this.y+gapY <= 400)){
-        this.y = this.y + gapY;
-    }else if(key == 'left' && (this.x-gapX >= 0)){
-        this.x = this.x - gapX;
-    }else if(key == 'right' && this.x+gapX <= 400){
-        this.x = this.x + gapX;
+    
+    if(key == 'up' && (this.y-playerDistanceY >= 0)){
+        this.y = this.y - playerDistanceY;
+    }else if(key == 'down' && (this.y+playerDistanceY <= 400)){
+        this.y = this.y + playerDistanceY;
+    }else if(key == 'left' && (this.x-playerDistanceX >= 0)){
+        this.x = this.x - playerDistanceX;
+    }else if(key == 'right' && this.x+playerDistanceX <= 400){
+        this.x = this.x + playerDistanceX;
     }
 }
 
@@ -81,9 +86,11 @@ Player.prototype.handleInput = function(key){
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
 
-for(i=0; i<3; i++){
-    enemy = new Enemy();
-    allEnemies.push(enemy);    
+for(i=1; i<4; i++){
+    enemy = new Enemy(enemyStartPositionX, enemyStartPositionY);
+    allEnemies.push(enemy); 
+
+    enemyStartPositionY = enemyStartPositionY + 83;   
 }
 
 var player = new Player();
