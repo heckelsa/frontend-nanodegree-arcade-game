@@ -2,6 +2,12 @@
 var enemyStartPositionX = 0;
 var enemyStartPositionY = 63;
 
+var enemyImage = 'images/enemy-bug.png';
+var playerImage = 'images/char-cat-girl.png';
+
+var playerStartPositionX = 200;
+var playerStartPositionY = 400;
+
 var playerDistanceY = 83;
 var playerDistanceX = 100;
 
@@ -12,7 +18,7 @@ var Enemy = function(x, y) {
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
+    this.sprite = enemyImage;
 
     this.x = x; //-95
     this.y = y; // 60
@@ -47,11 +53,10 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
     // Startposition of Player
-    this.x = 200;
-    this.y = 400;
+    this.reset();
 
     // Image of Player
-    this.playerImage = 'images/char-cat-girl.png';
+    this.playerSprite = playerImage;
 
 }
 
@@ -64,23 +69,34 @@ Player.prototype.update = function(dt) {
 }
 
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.playerImage), this.x, this.y); 
+    ctx.drawImage(Resources.get(this.playerSprite), this.x, this.y); 
 }
 
 Player.prototype.handleInput = function(key){
     
     if(key == 'up' && (this.y-playerDistanceY >= 0)){
+		// Player moves up
         this.y = this.y - playerDistanceY;
-    }else if(key == 'down' && (this.y+playerDistanceY <= 400)){
+    }else if(key == 'up' && (this.y-playerDistanceY < 0)){
+		// Player meets Water. Back to Start position
+		this.reset();
+	}else if(key == 'down' && (this.y+playerDistanceY <= 400)){
+		// Player moves down
         this.y = this.y + playerDistanceY;
     }else if(key == 'left' && (this.x-playerDistanceX >= 0)){
+		// Player moves left
         this.x = this.x - playerDistanceX;
     }else if(key == 'right' && this.x+playerDistanceX <= 400){
+		// Player moves right.
         this.x = this.x + playerDistanceX;
     }
 }
 
-
+// Places the Player on Start Position
+Player.prototype.reset = function(){
+	this.x = playerStartPositionX;
+    this.y = playerStartPositionY;
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
