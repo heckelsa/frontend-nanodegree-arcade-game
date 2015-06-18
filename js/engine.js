@@ -80,7 +80,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -94,8 +94,41 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        //player.update();
     }
+
+     function checkCollisions(){
+        if(player.y < 315){
+            allEnemies.forEach(function(enemy) {
+                console.log("Enemy X: " + enemy.x);
+                console.log("EnemyY: " + enemy.y);
+                console.log("Player X: " + player.x);
+                console.log("Player Y: " + player.y);
+
+                if((enemy.y < 300 && enemy.y >=200) && (player.y < 300 && player.y >=200)){
+                    checkXPosition(enemy.x, player.x);
+                }else if((enemy.y < 200 && enemy.y >= 130) && (player.y < 200 && player.y >= 130)){
+                    checkXPosition(enemy.x, player.x);
+                }else if((enemy.y < 130 && enemy.y >= 0) && (player.y < 130 && player.y >= 0)){
+                    checkXPosition(enemy.x, player.x);
+                }
+            });         
+        } 
+    }
+
+    function checkXPosition(enemyX, playerX){
+        if((enemyX >= 0 && enemyX < 125) && (playerX >= 0 && playerX < 101)){
+            player.reset();
+        }else if((enemyX >= 125 && enemyX < 202) && (playerX >= 101 && playerX < 202)){
+            player.reset();
+        }else if((enemyX >= 225 && enemyX < 303) && (playerX >= 202 && playerX < 303)){
+            player.reset();
+        }else if((enemyX >= 325 && enemyX < 404) && (playerX >= 303 && playerX < 404)){
+            player.reset();
+        }else if((enemyX >= 425 && enemyX < 505) && (playerX >= 404 && playerX < 505)){
+            player.reset();
+        }
+    }
+
 
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every
@@ -151,7 +184,6 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
-enemy.render();
         player.render();
     }
 

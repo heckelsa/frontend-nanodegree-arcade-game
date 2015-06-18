@@ -1,4 +1,6 @@
-// Variables
+//==========================================
+//============== Variables =================
+//==========================================
 var enemyStartPositionX = -90;
 var enemyStartPositionY = 63;
 
@@ -9,17 +11,18 @@ var playerStartPositionX = 200;
 var playerStartPositionY = 400;
 
 var playerDistanceY = 83;
-var playerDistanceX = 100;
+var playerDistanceX = 101;
 
-// Enemies our player must avoid
+
+//==========================================
+//================= Enemy ==================
+//==========================================
 var Enemy = function() {
 
     this.sprite = enemyImage;
+    this.speed = Math.floor(Math.random()*500) + 100;
 
-    this.x = enemyStartPositionX;
-    this.y = enemyStartPositionY;
-
-    this.speed = Math.floor(Math.random()*1000) + 100;
+    this.reset();    
 }
 
 // Update the enemy's position, required method for game
@@ -28,16 +31,17 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    
+
     this.x += this.speed * dt;
     if(this.x > 500) {
-        this.reset();
+        this.x = enemyStartPositionX;
     }
 }
 
 // Startposition for Enemy
 Enemy.prototype.reset = function () {
     this.x = enemyStartPositionX;
+    this.y = enemyStartPositionY;
 };
 
 // Draw the enemy on the screen, required method for game
@@ -45,10 +49,17 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
+
+//==========================================
+//================ Player ==================
+//==========================================
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function() {
+    // Speed of Player
+    this.speed = 300;
+
     // Startposition of Player
     this.reset();
 
@@ -58,8 +69,16 @@ var Player = function() {
 }
 
 Player.prototype.update = function(dt) {
-    
     this.x += this.speed * dt;
+    this.y += this.speed * dt;
+
+   
+}
+
+// Places the Player on Start Position
+Player.prototype.reset = function(){
+    this.x = playerStartPositionX;
+    this.y = playerStartPositionY;
 }
 
 Player.prototype.render = function() {
@@ -84,14 +103,15 @@ Player.prototype.handleInput = function(key){
 		// Player moves right.
         this.x = this.x + playerDistanceX;
     }
+
+     console.log("Player X: " + this.x);
+    console.log("Player Y: " + this.y);
 }
 
-// Places the Player on Start Position
-Player.prototype.reset = function(){
-	this.x = playerStartPositionX;
-    this.y = playerStartPositionY;
-}
 
+//==========================================
+//=============== Objects ==================
+//==========================================
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
