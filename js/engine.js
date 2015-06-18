@@ -99,11 +99,6 @@ var Engine = (function(global) {
      function checkCollisions(){
         if(player.y < 315){
             allEnemies.forEach(function(enemy) {
-                console.log("Enemy X: " + enemy.x);
-                console.log("EnemyY: " + enemy.y);
-                console.log("Player X: " + player.x);
-                console.log("Player Y: " + player.y);
-
                 if((enemy.y < 300 && enemy.y >=200) && (player.y < 300 && player.y >=200)){
                     checkXPosition(enemy.x, player.x);
                 }else if((enemy.y < 200 && enemy.y >= 130) && (player.y < 200 && player.y >= 130)){

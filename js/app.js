@@ -103,9 +103,6 @@ Player.prototype.handleInput = function(key){
 		// Player moves right.
         this.x = this.x + playerDistanceX;
     }
-
-     console.log("Player X: " + this.x);
-    console.log("Player Y: " + this.y);
 }
 
 
