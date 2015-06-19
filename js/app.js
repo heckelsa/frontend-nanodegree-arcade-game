@@ -1,17 +1,17 @@
 //==========================================
 //============== Variables =================
 //==========================================
-var enemyStartPositionX = -90;
-var enemyStartPositionY = 63;
+var ENEMY_START_POSITION_X = -90;
+var ENEMY_START_POSITION_Y = 63;
 
-var enemyImage = 'images/enemy-bug.png';
-var playerImage = 'images/char-cat-girl.png';
+var ENEMY_IMAGE = 'images/enemy-bug.png';
+var PLAYER_IMAGE = 'images/char-cat-girl.png';
 
-var playerStartPositionX = 200;
-var playerStartPositionY = 400;
+var PLAYER_START_POSITION_X = 200;
+var PLAYER_START_POSITION_Y = 400;
 
-var playerDistanceY = 83;
-var playerDistanceX = 101;
+var PLAYER_DISTANCE_Y = 83;
+var PLAYER_DISTANCE_X = 101;
 
 
 //==========================================
@@ -19,7 +19,7 @@ var playerDistanceX = 101;
 //==========================================
 var Enemy = function() {
 
-    this.sprite = enemyImage;
+    this.sprite = ENEMY_IMAGE;
     this.speed = Math.floor(Math.random()*500) + 100;
 
     this.reset();    
@@ -34,14 +34,14 @@ Enemy.prototype.update = function(dt) {
 
     this.x += this.speed * dt;
     if(this.x > 500) {
-        this.x = enemyStartPositionX;
+        this.x = ENEMY_START_POSITION_X;
     }
 }
 
 // Startposition for Enemy
 Enemy.prototype.reset = function () {
-    this.x = enemyStartPositionX;
-    this.y = enemyStartPositionY;
+    this.x = ENEMY_START_POSITION_X;
+    this.y = ENEMY_START_POSITION_Y;
 };
 
 // Draw the enemy on the screen, required method for game
@@ -64,7 +64,7 @@ var Player = function() {
     this.reset();
 
     // Image of Player
-    this.playerSprite = playerImage;
+    this.playerSprite = PLAYER_IMAGE;
 
 }
 
@@ -77,8 +77,8 @@ Player.prototype.update = function(dt) {
 
 // Places the Player on Start Position
 Player.prototype.reset = function(){
-    this.x = playerStartPositionX;
-    this.y = playerStartPositionY;
+    this.x = PLAYER_START_POSITION_X;
+    this.y = PLAYER_START_POSITION_Y;
 }
 
 Player.prototype.render = function() {
@@ -87,21 +87,21 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key){
     
-    if(key == 'up' && (this.y-playerDistanceY >= 0)){
+    if(key == 'up' && (this.y-PLAYER_DISTANCE_Y >= 0)){
 		// Player moves up
-        this.y = this.y - playerDistanceY;
-    }else if(key == 'up' && (this.y-playerDistanceY < 0)){
+        this.y = this.y - PLAYER_DISTANCE_Y;
+    }else if(key == 'up' && (this.y-PLAYER_DISTANCE_Y < 0)){
 		// Player meets Water. Back to Start position
 		this.reset();
-	}else if(key == 'down' && (this.y+playerDistanceY <= 400)){
+	}else if(key == 'down' && (this.y+PLAYER_DISTANCE_Y <= 400)){
 		// Player moves down
-        this.y = this.y + playerDistanceY;
-    }else if(key == 'left' && (this.x-playerDistanceX >= -2)){
+        this.y = this.y + PLAYER_DISTANCE_Y;
+    }else if(key == 'left' && (this.x-PLAYER_DISTANCE_X >= -2)){
 		// Player moves left
-        this.x = this.x - playerDistanceX;
-    }else if(key == 'right' && this.x+playerDistanceX <= 404){
+        this.x = this.x - PLAYER_DISTANCE_X;
+    }else if(key == 'right' && this.x+PLAYER_DISTANCE_X <= 404){
 		// Player moves right.
-        this.x = this.x + playerDistanceX;
+        this.x = this.x + PLAYER_DISTANCE_X;
     }
 }
 
@@ -114,10 +114,10 @@ Player.prototype.handleInput = function(key){
 var allEnemies = [];
 
 for(i=1; i<4; i++){
-    enemy = new Enemy(enemyStartPositionX, enemyStartPositionY);
+    enemy = new Enemy(ENEMY_START_POSITION_X, ENEMY_START_POSITION_Y);
     allEnemies.push(enemy); 
 
-    enemyStartPositionY = enemyStartPositionY + 83;   
+    ENEMY_START_POSITION_Y = ENEMY_START_POSITION_Y + 83;   
 }
 
 var player = new Player();
