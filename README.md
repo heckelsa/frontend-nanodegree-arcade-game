@@ -1,6 +1,15 @@
-frontend-nanodegree-arcade-game
+Frontend Nanodegree Arcade Game
 ===============================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+HOW TO USE
+----------
 
-for self-checking their submission.
+Open the game by visiting my gh-page - http://heckelsa.github.io/frontend-nanodegree-arcade-game/ or click on index.html.
+
+The game starts immediately after opening.
+
+Use the four arrows - up, down, right, left - to move the player on the field. Try to navigate around the bugs. If you collide with a bug, your Player dies and is set back to the start position.
+
+
+
+
