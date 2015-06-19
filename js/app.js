@@ -23,7 +23,7 @@ var Enemy = function() {
     this.speed = Math.floor(Math.random()*500) + 100;
 
     this.reset();    
-}
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -36,7 +36,7 @@ Enemy.prototype.update = function(dt) {
     if(this.x > 500) {
         this.x = ENEMY_START_POSITION_X;
     }
-}
+};
 
 // Startposition for Enemy
 Enemy.prototype.reset = function () {
@@ -47,7 +47,7 @@ Enemy.prototype.reset = function () {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 
 //==========================================
@@ -65,25 +65,22 @@ var Player = function() {
 
     // Image of Player
     this.playerSprite = PLAYER_IMAGE;
-
-}
+};
 
 Player.prototype.update = function(dt) {
     this.x += this.speed * dt;
     this.y += this.speed * dt;
-
-   
-}
+};
 
 // Places the Player on Start Position
 Player.prototype.reset = function(){
     this.x = PLAYER_START_POSITION_X;
     this.y = PLAYER_START_POSITION_Y;
-}
+};
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.playerSprite), this.x, this.y); 
-}
+};
 
 Player.prototype.handleInput = function(key){
     
@@ -103,7 +100,7 @@ Player.prototype.handleInput = function(key){
 		// Player moves right.
         this.x = this.x + PLAYER_DISTANCE_X;
     }
-}
+};
 
 
 //==========================================
