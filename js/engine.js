@@ -111,7 +111,7 @@ var Engine = (function(global) {
     }
 
     function checkXPosition(enemyX, playerX){
-        if((enemyX >= 0 && enemyX < 125) && (playerX >= 0 && playerX < 101)){
+        if((enemyX >= -5 && enemyX < 125) && (playerX >= -5 && playerX < 101)){
             player.reset();
         }else if((enemyX >= 125 && enemyX < 202) && (playerX >= 101 && playerX < 202)){
             player.reset();

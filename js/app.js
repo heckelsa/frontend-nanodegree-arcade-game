@@ -96,10 +96,10 @@ Player.prototype.handleInput = function(key){
 	}else if(key == 'down' && (this.y+playerDistanceY <= 400)){
 		// Player moves down
         this.y = this.y + playerDistanceY;
-    }else if(key == 'left' && (this.x-playerDistanceX >= 0)){
+    }else if(key == 'left' && (this.x-playerDistanceX >= -2)){
 		// Player moves left
         this.x = this.x - playerDistanceX;
-    }else if(key == 'right' && this.x+playerDistanceX <= 400){
+    }else if(key == 'right' && this.x+playerDistanceX <= 404){
 		// Player moves right.
         this.x = this.x + playerDistanceX;
     }
